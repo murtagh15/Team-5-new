@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Калькулятор поступления</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">🎓</div>
+        <div>
+          <div class="title">Калькулятор поступления</div>
+          <div class="subtitle">Выбирай программы, считай шанс, сохраняй результаты — без боли.</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="btn ghost" id="btn-reset">Сброс</button>
+        <button class="btn" id="btn-save">Сохранить</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>Ваши баллы</h2>
+      <p class="muted">Заполните то, что сдаёте. Остальное = 0. Достижения до 10.</p>
+
+      <div class="form grid2">
+        <label>Математика
+          <input type="number" id="s-math" min="0" max="100" placeholder="0–100">
+        </label>
+        <label>Русский
+          <input type="number" id="s-rus" min="0" max="100" placeholder="0–100">
+        </label>
+        <label>Физика
+          <input type="number" id="s-phys" min="0" max="100" placeholder="0–100">
+        </label>
+        <label>Информатика
+          <input type="number" id="s-inf" min="0" max="100" placeholder="0–100">
+        </label>
+        <label>Иностранный
+          <input type="number" id="s-eng" min="0" max="100" placeholder="0–100">
+        </label>
+        <label>Достижения
+          <input type="number" id="s-ach" min="0" max="10" placeholder="0–10">
+        </label>
+      </div>
+
+      <div class="pill" id="pill-status">Данные не сохранены</div>
+    </section>
+
+    <section class="card">
+      <h2>Выбор программ</h2>
+      <p class="muted">Выберите до <b>5</b> программ. Можно искать по названию.</p>
+
+      <div class="row">
+        <label class="grow">Университет
+          <select id="sel-university">
+            <option value="">Загрузка…</option>
+          </select>
+        </label>
+
+        <label class="grow">Поиск
+          <input type="text" id="inp-search" placeholder="например: математика, безопасность…">
+        </label>
+      </div>
+
+      <label>Программа
+        <select id="sel-program">
+          <option value="">Сначала выберите университет</option>
+        </select>
+      </label>
+
+      <div class="row">
+        <button class="btn" id="btn-add">Добавить</button>
+        <div class="muted">Выбрано: <b id="picked-count">0</b>/5</div>
+      </div>
+
+      <div class="chips" id="picked"></div>
+
+      <div class="row">
+        <button class="btn primary" id="btn-calc" disabled>Рассчитать</button>
+        <button class="btn ghost" id="btn-best" disabled>Топ-10 по базе</button>
+      </div>
+    </section>
+
+    <section class="card wide">
+      <div class="row space">
+        <h2>Результаты</h2>
+        <div class="muted">Итоговый балл: <b id="total-score">—</b></div>
+      </div>
+
+      <div id="results" class="results"></div>
+      <div id="errors" class="errors"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container muted">API: <code>/api</code> • UI: <code>/</code></div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>
